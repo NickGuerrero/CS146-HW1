@@ -1,10 +1,18 @@
+import java.io.*;
+
 /**
- *
- *
- *
+ * Greeting Homework Assignment
+ * 
+ * Very straightfoward program that parses through a text file, and prints
+ * the text. A message can be added by changing the message variable here
+ * and adding the appropriate @ symbol to place it dynamically. Other
+ * symbols are used to help the image look nicer.
+ * 
+ * External Sources: Java 7 Documentation for FileReader
+ * 
+ * @author Nicolas Guerrero
  */
 
-import java.io.*;
 public class GreetingHomework{
     public static void main(String[] args) throws IOException{
         // Prepare for the message
@@ -20,15 +28,11 @@ public class GreetingHomework{
             offset--;
         }
         
+        // Interpret and read the text file
         FileReader reader = new FileReader("dragon.txt");
-        
-        // Set up a buffer loop
-        int num = reader.read();
-        char ch = (char) num;
-        String newline;
-        
-        while(num != -1){
-            switch(ch){
+        int ch = reader.read();
+        while(ch != -1){
+            switch((char) ch){
                 case '@':
                     System.out.print(greeting);
                     break;
@@ -42,15 +46,11 @@ public class GreetingHomework{
                     System.out.print(tab);
                     break;
                 default:
-                    System.out.print(ch);
+                    System.out.print((char) ch);
                     break;
             }
-            num = reader.read();
-            if(num > 0){
-                ch = (char) num;
-            }
+            ch = reader.read();
         }
         reader.close();
-        System.out.println("Status: Okay");
     }
 }
